@@ -8,5 +8,16 @@
 */
 
 import router from '@adonisjs/core/services/router'
-router.on('/').renderInertia('home')
+router.on('/').renderInertia('home', { version: 6 })
 
+router.get('/register', async (ctx) => {
+  return ctx.inertia.render('auth/register', { stuff: 'here' })
+})
+
+router.get('/login', async (ctx) => {
+  return ctx.inertia.render('auth/login')
+})
+
+router.post('/register', async (ctx) => {
+  return ctx.response.redirect().back()
+})
